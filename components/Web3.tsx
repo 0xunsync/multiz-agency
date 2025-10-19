@@ -47,7 +47,7 @@ const Web3: React.FC = () => {
                 </div>
 
                 <div className="relative flex flex-col items-center justify-center min-h-[500px] lg:min-h-[600px] bg-graphite/30 border border-neon-gold/10 rounded-3xl p-4 md:p-6">
-                    <div className="w-full h-[350px] md:h-[450px] lg:h-[500px] rounded-2xl overflow-hidden mb-4 cursor-grab">
+                    <div className="w-full h-[350px] md:h-[450px] lg:h-[500px] rounded-2xl overflow-hidden mb-4 cursor-grab relative">
                         <model-viewer
                             src={avatarSkin.src}
                             alt={avatarSkin.name}
@@ -59,7 +59,21 @@ const Web3: React.FC = () => {
                             exposure="1.2"
                             environmentImage="neutral"
                             style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
+                            loading="eager"
+                            reveal="auto"
                         >
+                            <div slot="poster" className="w-full h-full bg-graphite/50 flex items-center justify-center">
+                                <div className="text-center">
+                                    <div className="animate-spin w-8 h-8 border-2 border-neon-gold border-t-transparent rounded-full mx-auto mb-4"></div>
+                                    <p className="text-sm text-gray-text">Loading 3D Avatar...</p>
+                                </div>
+                            </div>
+                            <div slot="error" className="w-full h-full bg-graphite/50 flex items-center justify-center">
+                                <div className="text-center">
+                                    <p className="text-sm text-red-400 mb-2">Failed to load 3D model</p>
+                                    <p className="text-xs text-gray-text">Please refresh the page</p>
+                                </div>
+                            </div>
                         </model-viewer>
                     </div>
                     <div className="w-full text-center">
